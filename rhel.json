@@ -13,15 +13,11 @@
         "folder": "{{user `vsphere-folder`}}",
         "datacenter": "{{user `datacenter`}}",
   
-        "communicator": "winrm",
-        "winrm_username": "Administrator",
-        "winrm_password": "{{user `winadmin-password`}}",
-        "winrm_timeout": "5m",
   
         "convert_to_template": "true",
 
         "vm_name": "{{user `vm-name`}}-{{user `buildtime`}}",
-        "guest_os_type": "windows9Server64Guest",
+        "guest_os_type": "rhel8-64",
         "remove_cdrom": "true",
   
         "CPUs": "{{user `vm-cpu-num`}}",
@@ -54,33 +50,32 @@
           "[] /vmimages/tools-isoimages/windows.iso"
         ],
   
-        "floppy_files": [
-            "autounattend.xml",
-            "scripts/disable-network-discovery.cmd",
-            "scripts/enable-rdp.cmd",
-            "scripts/enable-winrm.ps1",
-            "scripts/install-vm-tools.cmd"   
-        ]
+        "tools_upload_flavor": "linux",
+        "tools_upload_path": "/tmp/vmware_tools_{{.Flavor}}.iso",
+
+        "http_directory": "http",
+        "ssh_wait_timeout": "20m",
+        "ssh_username": "kopicloud",
+        "ssh_password": "kopicloud",
+        "shutdown_command": "echo 'kopicloud' | sudo -S /sbin/halt -h -p",
+        "boot_wait": "5s",
+        "boot_command": [
+        "<esc><wait>",
+        "vmlinuz initrd=initrd.img inst.geoloc=0 rd.driver.blacklist=dm-multipath net.ifnames=0 biosdevname=0 ",
+        "ks=http://{{.HTTPIP}}:{{.HTTPPort}}/vmware-ks.cfg",
+        "<enter>"
+    ]
     }
   ],
   
-  "provisioners": [
-      {
-        "type": "powershell",
-        "scripts": ["scripts/diskmount.ps1"]
-      },
-    {
-        "type": "powershell",
-        "scripts": ["scripts/win-updates.ps1"]
-      },
-     {
-        "type": "windows-restart",
-        "restart_timeout": "30m"
-      },
-    {
-      "type": "windows-shell",
-      "inline": ["ipconfig /all"]
-    }
-  ]
-   
+  "provisioners": [{
+    "type": "shell",
+    "execute_command": "echo 'kopicloud' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+    "scripts": [
+      "scripts/vmware.sh",
+      "scripts/sshd.sh",
+      "scripts/cleanup.sh"
+    ]
+  }]
+
 }
