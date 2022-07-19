@@ -25,15 +25,7 @@
         "RAM_reserve_all": true,
         "firmware": "bios",
   
-        "storage": [{
-                "disk_size": "61440",
-                "disk_thin_provisioned":true},
-                        {
-                "disk_size": 40960,
-                "disk_thin_provisioned":true}, 
-                        {
-                 "disk_size": 20480,
-                 "disk_thin_provisioned":true}],
+        "disk_size": "15360",
         "disk_controller_type": "lsilogic-sas",
           
         "network_adapters": [
@@ -42,9 +34,7 @@
             "network_card": "vmxnet3"
           }
         ],
-
-        "shutdown_command": "shutdown /s /t 5",
-  
+ 
         "iso_paths": [
           "{{user `os_iso_path`}}",
           "[] /vmimages/tools-isoimages/windows.iso"
