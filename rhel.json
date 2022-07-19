@@ -17,7 +17,6 @@
         "convert_to_template": "true",
 
         "vm_name": "{{user `vm-name`}}-{{user `buildtime`}}",
-        "guest_os_type": "rhel8-64",
         "remove_cdrom": "true",
   
         "CPUs": "{{user `vm-cpu-num`}}",
