@@ -34,7 +34,7 @@
             "network_card": "vmxnet3"
           }
         ],
- 
+        
         "iso_paths": [
           "{{user `os_iso_path`}}",
           "[] /vmimages/tools-isoimages/windows.iso"
