@@ -2,7 +2,7 @@
   "builders": [
     {
         "type": "vsphere-iso",
-  
+        "boot_order": "cdrom",
         "vcenter_server": "{{user `vsphere-server`}}",
         "username": "{{user `vsphere-user`}}",
         "password": "{{user `vsphere-password`}}",
