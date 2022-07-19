@@ -37,9 +37,7 @@
         ],
         
         "iso_paths": [
-          "{{user `os_iso_path`}}",
-          "[] /vmimages/tools-isoimages/windows.iso"
-        ],
+          "{{user `os_iso_path`}}"],
   
 
         "http_directory": "http",
@@ -48,12 +46,7 @@
         "ssh_password": "kopicloud",
         "shutdown_command": "echo 'kopicloud' | sudo -S /sbin/halt -h -p",
         "boot_wait": "5s",
-        "boot_command": [
-        "<esc><wait>",
-        "vmlinuz initrd=initrd.img inst.geoloc=0 rd.driver.blacklist=dm-multipath net.ifnames=0 biosdevname=0 ",
-        "ks=http://{{.HTTPIP}}:{{.HTTPPort}}/vmware-ks.cfg",
-        "<enter>"
-    ]
+        "boot_command": ["<up><wait><tab><wait> text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"]
     }
   ],
   
