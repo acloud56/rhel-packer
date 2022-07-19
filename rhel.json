@@ -25,7 +25,9 @@
         "RAM_reserve_all": true,
         "firmware": "bios",
   
-        "disk_size": "15360",
+        "storage": [{
+                "disk_size": 40960,
+                "disk_thin_provisioned":true}],
         "disk_controller_type": "lsilogic-sas",
           
         "network_adapters": [
