@@ -13,7 +13,7 @@
         "folder": "{{user `vsphere-folder`}}",
         "datacenter": "{{user `datacenter`}}",
   
-  
+        "guest_os_type": "rhel7_64Guest",
         "convert_to_template": "true",
 
         "vm_name": "{{user `vm-name`}}-{{user `buildtime`}}",
