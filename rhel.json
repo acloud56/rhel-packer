@@ -46,7 +46,7 @@
         "ssh_password": "kopicloud",
         "shutdown_command": "echo 'kopicloud' | sudo -S /sbin/halt -h -p",
         "boot_wait": "5s",
-        "boot_command": ["<up><wait><tab><wait> text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"]
+        "boot_command": ["<up><wait><tab><wait> text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vmware-ks.cfg<enter><wait>"]
     }
   ],
   
