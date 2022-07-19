@@ -39,7 +39,7 @@
         "iso_paths": [
           "{{user `os_iso_path`}}"],
   
-
+        "tools_upload_flavor": "linux",
         "http_directory": "http",
         "ssh_wait_timeout": "20m",
         "ssh_username": "kopicloud",
