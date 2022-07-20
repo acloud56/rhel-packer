@@ -14,9 +14,6 @@
         "datacenter": "{{user `datacenter`}}",
   
         "guest_os_type": "rhel7_64Guest",
-        "floppy_files": [
-        "{{template_dir}}/http/vmware-ks.cfg"
-         ],
         "convert_to_template": "true",
 
         "vm_name": "{{user `vm-name`}}-{{user `buildtime`}}",
@@ -49,7 +46,7 @@
         "ssh_password": "kopicloud",
         "shutdown_command": "echo 'kopicloud' | sudo -S /sbin/halt -h -p",
         "boot_wait": "5s",
-        "boot_command": ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vmware-ks.cfg ip=dhcp <enter><wait><wait><enter>"
+        "boot_command": ["<tab> text ks=https://raw.githubusercontent.com/acloud56/rhel-packer/master/http/vmware-ks.cfg <enter><wait><wait><enter>"
             ]
     }
   ],
